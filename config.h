@@ -20,6 +20,8 @@ static const char *colors[][3]      = {
 	[SchemeSel]  = { selfgcolor,	selbgcolor, 	selbordercolor },
 };
 
+static int isFullscreenFake = 0;
+
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 
@@ -99,7 +101,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY|ShiftMask,             XK_q,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[1]} },
-	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[2]} },
+	{ MODKEY,                       XK_f,      toggleFakeFullscreen, {0} },
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[3]} },
 	{ MODKEY,                       XK_c,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
