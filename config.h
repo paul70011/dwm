@@ -65,9 +65,6 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 static const char *termcmd[]  = { "st", NULL };
 static const char *brightnessinccmd[] = {"xbacklight", "-inc", "5", NULL};
 static const char *brightnessdeccmd[] = {"xbacklight", "-dec", "5", NULL};
-static const char *volumeinccmd[] = {"amixer", "sset", "'Master'", "2%+", NULL};
-static const char *volumedeccmd[] = {"amixer", "sset", "'Master'", "2%-", NULL};
-static const char *volumemutecmd[] = {"amixer", "sset", "'Master'", "toggle", NULL};
 static const char *scrotcmd[]  = { "scrot", "-e", "'sxiv ~/$f '",  NULL };
 static const char *scrotfocusedcmd[]  = { "scrot", "--focused", "-e", "'mv ~/$f ~/Pictures'", NULL };
 
@@ -78,9 +75,9 @@ static Key keys[] = {
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 	{ 0,                            0x1008ff02,spawn,          {.v = brightnessinccmd } },
 	{ 0,                            0x1008ff03,spawn,          {.v = brightnessdeccmd } },
-	{ 0,                            0x1008ff13,spawn,          {.v = volumeinccmd } },
-	{ 0,                            0x1008ff11,spawn,          {.v = volumedeccmd } },
-	{ 0,                            0x1008ff12,spawn,          {.v = volumemutecmd } },
+	{ 0,                            0x1008ff13,spawn,          SHCMD("amixer sset Master 2%+; pkill -RTMIN+10 dwmblocks") },
+	{ 0,                            0x1008ff11,spawn,          SHCMD("amixer sset Master 2%-; pkill -RTMIN+10 dwmblocks") },
+	{ 0,                            0x1008ff12,spawn,          SHCMD("amixer sset Master toggle; pkill -RTMIN+10 dwmblocks") },
 	{ 0,                            XK_Print,  spawn,          SHCMD("scrot -q 100 -e 'mv $f ~/Pictures'") },
 	{ ShiftMask,                    XK_Print,  spawn,      	   SHCMD("scrot --focused -q 100 -e 'mv $f ~/Pictures'") },
 	{ ControlMask,                  XK_Print,  spawn,     	   SHCMD("sleep 1s;scrot --select -q 100 -e 'mv $f ~/Pictures'") },
