@@ -65,8 +65,6 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 static const char *termcmd[]  = { "st", NULL };
 static const char *brightnessinccmd[] = {"xbacklight", "-inc", "5", NULL};
 static const char *brightnessdeccmd[] = {"xbacklight", "-dec", "5", NULL};
-static const char *scrotcmd[]  = { "scrot", "-e", "'sxiv ~/$f '",  NULL };
-static const char *scrotfocusedcmd[]  = { "scrot", "--focused", "-e", "'mv ~/$f ~/Pictures'", NULL };
 
 #include "movestack.c"
 static Key keys[] = {
@@ -78,9 +76,8 @@ static Key keys[] = {
 	{ 0,                            0x1008ff13,spawn,          SHCMD("amixer sset Master 2%+; pkill -RTMIN+10 dwmblocks") },
 	{ 0,                            0x1008ff11,spawn,          SHCMD("amixer sset Master 2%-; pkill -RTMIN+10 dwmblocks") },
 	{ 0,                            0x1008ff12,spawn,          SHCMD("amixer sset Master toggle; pkill -RTMIN+10 dwmblocks") },
-	{ 0,                            XK_Print,  spawn,          SHCMD("scrot -q 100 -e 'mv $f ~/Pictures'") },
-	{ ShiftMask,                    XK_Print,  spawn,      	   SHCMD("scrot --focused -q 100 -e 'mv $f ~/Pictures'") },
-	{ ControlMask,                  XK_Print,  spawn,     	   SHCMD("sleep 1s;scrot --select -q 100 -e 'mv $f ~/Pictures'") },
+	{ 0,                            XK_Print,  spawn,          SHCMD("dmenu-screenshot") },
+	{ ControlMask,                  XK_Print,  spawn,     	   SHCMD("screenshot-selection") },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_Right,  focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_Left,   focusstack,     {.i = -1 } },
