@@ -91,55 +91,55 @@ ResourcePref resources[] = {
 
 #include "movestack.c"
 static Key keys[] = {
-	/* modifier                     key        function        argument */
-	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
-	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
-	{ 0,                            XF86XK_MonBrightnessUp, spawn, {.v = brightnessinccmd } },
-	{ 0,                            XF86XK_MonBrightnessDown, spawn, {.v = brightnessdeccmd } },
-	{ 0,                            XF86XK_AudioRaiseVolume, spawn, SHCMD("amixer sset Master 2%+; pkill -RTMIN+10 dwmblocks") },
-	{ 0,                            XF86XK_AudioLowerVolume, spawn, SHCMD("amixer sset Master 2%-; pkill -RTMIN+10 dwmblocks") },
-	{ 0,                            XF86XK_AudioMute, spawn,   SHCMD("amixer sset Master toggle; pkill -RTMIN+10 dwmblocks") },
-	{ 0,                            XF86XK_AudioPlay, spawn,   SHCMD("playerctl play-pause") },
-	{ 0,                            XF86XK_AudioPlay, spawn,   SHCMD("playerctl previous") },
-	{ 0,                            XF86XK_AudioNext, spawn,   SHCMD("playerctl next") },
-	{ 0,                            XK_Print,  spawn,          SHCMD("dmenu-screenshot") },
-	{ ControlMask,                  XK_Print,  spawn,          SHCMD("screenshot-selection") },
-	{ MODKEY|ShiftMask,             XK_c,      spawn,          SHCMD("toggle-picom") },
-	{ MODKEY,                       XK_b,      togglebar,      {0} },
-	{ MODKEY,                       XK_Right,  focusstack,     {.i = +1 } },
-	{ MODKEY,                       XK_Left,   focusstack,     {.i = -1 } },
-	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
-	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
-	{ MODKEY,                       XK_Down,   setmfact,       {.f = -0.05} },
-	{ MODKEY,                       XK_Up,     setmfact,       {.f = +0.05} },
-	{ MODKEY|ShiftMask,             XK_Right,  movestack,      {.i = +1 } },
-	{ MODKEY|ShiftMask,             XK_Left,   movestack,      {.i = -1 } },
-	{ MODKEY|ShiftMask,             XK_Return, zoom,           {0} },
-	{ MODKEY,                       XK_Tab,    view,           {0} },
-	{ MODKEY|ShiftMask,             XK_q,      killclient,     {0} },
-	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[1]} },
-	{ MODKEY,                       XK_f,      toggleFakeFullscreen, {0} },
-	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[3]} },
-	{ MODKEY,                       XK_c,      setlayout,      {.v = &layouts[0]} },
-	{ MODKEY,                       XK_space,  setlayout,      {0} },
-	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
-	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
-	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
-	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
-	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
-	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
-	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
-	{ MODKEY,                       XK_F5,     xrdb,           {.v = NULL } },
-	TAGKEYS(                        XK_1,                      0)
-	TAGKEYS(                        XK_2,                      1)
-	TAGKEYS(                        XK_3,                      2)
-	TAGKEYS(                        XK_4,                      3)
-	TAGKEYS(                        XK_5,                      4)
-	TAGKEYS(                        XK_6,                      5)
-	TAGKEYS(                        XK_7,                      6)
-	TAGKEYS(                        XK_8,                      7)
-	TAGKEYS(                        XK_9,                      8)
-	{ MODKEY|ShiftMask,             XK_x,      quit,           {0} },
+	/* modifier                     key                          function              argument */
+	{ MODKEY,                       XK_p,                        spawn,                {.v = dmenucmd } },
+	{ MODKEY,                       XK_Return,                   spawn,                {.v = termcmd } },
+	{ 0,                            XF86XK_MonBrightnessUp,      spawn,                {.v = brightnessinccmd } },
+	{ 0,                            XF86XK_MonBrightnessDown,    spawn,                {.v = brightnessdeccmd } },
+	{ 0,                            XF86XK_AudioRaiseVolume,     spawn,                SHCMD("amixer sset Master 2%+; pkill -RTMIN+10 dwmblocks") },
+	{ 0,                            XF86XK_AudioLowerVolume,     spawn,                SHCMD("amixer sset Master 2%-; pkill -RTMIN+10 dwmblocks") },
+	{ 0,                            XF86XK_AudioMute,            spawn,                SHCMD("amixer sset Master toggle; pkill -RTMIN+10 dwmblocks") },
+	{ 0,                            XF86XK_AudioPlay,            spawn,                SHCMD("playerctl play-pause") },
+	{ 0,                            XF86XK_AudioPlay,            spawn,                SHCMD("playerctl previous") },
+	{ 0,                            XF86XK_AudioNext,            spawn,                SHCMD("playerctl next") },
+	{ 0,                            XK_Print,                    spawn,                SHCMD("dmenu-screenshot") },
+	{ ControlMask,                  XK_Print,                    spawn,                SHCMD("screenshot-selection") },
+	{ MODKEY|ShiftMask,             XK_c,                        spawn,                SHCMD("toggle-picom") },
+	{ MODKEY,                       XK_b,                        togglebar,            {0} },
+	{ MODKEY,                       XK_Right,                    focusstack,           {.i = +1 } },
+	{ MODKEY,                       XK_Left,                     focusstack,           {.i = -1 } },
+	{ MODKEY,                       XK_i,                        incnmaster,           {.i = +1 } },
+	{ MODKEY,                       XK_d,                        incnmaster,           {.i = -1 } },
+	{ MODKEY,                       XK_Down,                     setmfact,             {.f = -0.05} },
+	{ MODKEY,                       XK_Up,                       setmfact,             {.f = +0.05} },
+	{ MODKEY|ShiftMask,             XK_Right,                    movestack,            {.i = +1 } },
+	{ MODKEY|ShiftMask,             XK_Left,                     movestack,            {.i = -1 } },
+	{ MODKEY|ShiftMask,             XK_Return,                   zoom,                 {0} },
+	{ MODKEY,                       XK_Tab,                      view,                 {0} },
+	{ MODKEY|ShiftMask,             XK_q,                        killclient,           {0} },
+	{ MODKEY,                       XK_t,                        setlayout,            {.v = &layouts[1]} },
+	{ MODKEY,                       XK_f,                        toggleFakeFullscreen, {0} },
+	{ MODKEY,                       XK_m,                        setlayout,            {.v = &layouts[3]} },
+	{ MODKEY,                       XK_c,                        setlayout,            {.v = &layouts[0]} },
+	{ MODKEY,                       XK_space,                    setlayout,            {0} },
+	{ MODKEY|ShiftMask,             XK_space,                    togglefloating,       {0} },
+	{ MODKEY,                       XK_0,                        view,                 {.ui = ~0 } },
+	{ MODKEY|ShiftMask,             XK_0,                        tag,                  {.ui = ~0 } },
+	{ MODKEY,                       XK_comma,                    focusmon,             {.i = -1 } },
+	{ MODKEY,                       XK_period,                   focusmon,             {.i = +1 } },
+	{ MODKEY|ShiftMask,             XK_comma,                    tagmon,               {.i = -1 } },
+	{ MODKEY|ShiftMask,             XK_period,                   tagmon,               {.i = +1 } },
+	{ MODKEY,                       XK_F5,                       xrdb,                 {.v = NULL } },
+	TAGKEYS(                        XK_1,                                              0)
+	TAGKEYS(                        XK_2,                                              1)
+	TAGKEYS(                        XK_3,                                              2)
+	TAGKEYS(                        XK_4,                                              3)
+	TAGKEYS(                        XK_5,                                              4)
+	TAGKEYS(                        XK_6,                                              5)
+	TAGKEYS(                        XK_7,                                              6)
+	TAGKEYS(                        XK_8,                                              7)
+	TAGKEYS(                        XK_9,                                              8)
+	{ MODKEY|ShiftMask,             XK_x,                        quit,                 {0} },
 };
 
 /* button definitions */
