@@ -1,4 +1,5 @@
 /* See LICENSE file for copyright and license details. */
+#include <X11/XF86keysym.h>
 
 /* appearance */
 static unsigned int borderpx        = 2;        /* border pixel of windows */
@@ -93,11 +94,14 @@ static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
-	{ 0,                            0x1008ff02,spawn,          {.v = brightnessinccmd } },
-	{ 0,                            0x1008ff03,spawn,          {.v = brightnessdeccmd } },
-	{ 0,                            0x1008ff13,spawn,          SHCMD("amixer sset Master 2%+; pkill -RTMIN+10 dwmblocks") },
-	{ 0,                            0x1008ff11,spawn,          SHCMD("amixer sset Master 2%-; pkill -RTMIN+10 dwmblocks") },
-	{ 0,                            0x1008ff12,spawn,          SHCMD("amixer sset Master toggle; pkill -RTMIN+10 dwmblocks") },
+	{ 0,                            XF86XK_MonBrightnessUp, spawn, {.v = brightnessinccmd } },
+	{ 0,                            XF86XK_MonBrightnessDown, spawn, {.v = brightnessdeccmd } },
+	{ 0,                            XF86XK_AudioRaiseVolume, spawn, SHCMD("amixer sset Master 2%+; pkill -RTMIN+10 dwmblocks") },
+	{ 0,                            XF86XK_AudioLowerVolume, spawn, SHCMD("amixer sset Master 2%-; pkill -RTMIN+10 dwmblocks") },
+	{ 0,                            XF86XK_AudioMute, spawn,   SHCMD("amixer sset Master toggle; pkill -RTMIN+10 dwmblocks") },
+	{ 0,                            XF86XK_AudioPlay, spawn,   SHCMD("playerctl play-pause") },
+	{ 0,                            XF86XK_AudioPlay, spawn,   SHCMD("playerctl previous") },
+	{ 0,                            XF86XK_AudioNext, spawn,   SHCMD("playerctl next") },
 	{ 0,                            XK_Print,  spawn,          SHCMD("dmenu-screenshot") },
 	{ ControlMask,                  XK_Print,  spawn,          SHCMD("screenshot-selection") },
 	{ MODKEY|ShiftMask,             XK_c,      spawn,          SHCMD("toggle-picom") },
