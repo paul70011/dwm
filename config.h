@@ -100,7 +100,7 @@ static Key keys[] = {
 	{ 0,                            XF86XK_AudioLowerVolume,     spawn,                SHCMD("amixer sset Master 2%-; pkill -RTMIN+10 dwmblocks") },
 	{ 0,                            XF86XK_AudioMute,            spawn,                SHCMD("amixer sset Master toggle; pkill -RTMIN+10 dwmblocks") },
 	{ 0,                            XF86XK_AudioPlay,            spawn,                SHCMD("playerctl play-pause") },
-	{ 0,                            XF86XK_AudioPlay,            spawn,                SHCMD("playerctl previous") },
+	{ 0,                            XF86XK_AudioPrev,            spawn,                SHCMD("playerctl previous") },
 	{ 0,                            XF86XK_AudioNext,            spawn,                SHCMD("playerctl next") },
 	{ 0,                            XK_Print,                    spawn,                SHCMD("dmenu-screenshot") },
 	{ ControlMask,                  XK_Print,                    spawn,                SHCMD("screenshot-selection") },
