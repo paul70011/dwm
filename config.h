@@ -1,5 +1,6 @@
 /* See LICENSE file for copyright and license details. */
 #include <X11/XF86keysym.h>
+#include "unfloat.c"
 
 /* appearance */
 static unsigned int borderpx        = 2;        /* border pixel of windows */
@@ -119,6 +120,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_q,                        killclient,           {0} },
 	{ MODKEY,                       XK_t,                        setlayout,            {.v = &layouts[1]} },
 	{ MODKEY,                       XK_f,                        toggleFakeFullscreen, {0} },
+	{ MODKEY|ShiftMask,             XK_f,                        unfloatvisible,       {0} },
 	{ MODKEY,                       XK_m,                        setlayout,            {.v = &layouts[3]} },
 	{ MODKEY,                       XK_c,                        setlayout,            {.v = &layouts[0]} },
 	{ MODKEY,                       XK_space,                    setlayout,            {0} },
