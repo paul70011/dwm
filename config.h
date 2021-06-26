@@ -42,16 +42,16 @@ static const Rule rules[] = {
 
 /* layout(s) */
 static float mfact     = 0.5; /* factor of master area size [0.05..0.95] */
-static int nmaster     = 3;   /* number of clients in master area */
+static int nmaster     = 1;   /* number of clients in master area */
 static int resizehints = 0;    /* 1 means respect size hints in tiled resizals */
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ "|||",      col },
+	{ "|M|",      centeredmaster },
 	{ "[]=",      tile },    /* first entry is default */
 	{ "><>",      NULL },    /* no layout function means floating behavior */
 	{ "[M]",      monocle },
-	{ "|M|",      centeredmaster },
+	{ "|||",      col },
 };
 
 /* key definitions */
@@ -107,6 +107,7 @@ static Key keys[] = {
 	{ 0,                            XK_Print,                    spawn,                SHCMD("dmenu-screenshot") },
 	{ ControlMask,                  XK_Print,                    spawn,                SHCMD("screenshot-selection") },
 	{ MODKEY|ShiftMask,             XK_c,                        spawn,                SHCMD("toggle-picom") },
+	{ MODKEY,                       XK_e,                        spawn,                SHCMD("nautilus") },
 	{ MODKEY,                       XK_b,                        togglebar,            {0} },
 	{ MODKEY,                       XK_Right,                    focusstack,           {.i = +1 } },
 	{ MODKEY,                       XK_l,                        focusstack,           {.i = +1 } },
@@ -127,11 +128,11 @@ static Key keys[] = {
 	{ MODKEY,                       XK_f,                        toggleFakeFullscreen, {0} },
 	{ MODKEY|ShiftMask,             XK_f,                        unfloatvisible,       {0} },
 	{ MODKEY,                       XK_m,                        setlayout,            {.v = &layouts[3]} },
-	{ MODKEY,                       XK_u,                        setlayout,            {.v = &layouts[4]} },
-	{ MODKEY,                       XK_c,                        setlayout,            {.v = &layouts[0]} },
+	{ MODKEY,                       XK_u,                        setlayout,            {.v = &layouts[0]} },
+	{ MODKEY,                       XK_c,                        setlayout,            {.v = &layouts[4]} },
 	{ MODKEY,                       XK_minus,                    setgaps,              {.i = -5 } },
-	{ MODKEY,                       XK_equal,                    setgaps,              {.i = +5 } },
-	{ MODKEY|ShiftMask,             XK_equal,                    setgaps,              {.i = 0  } },
+	{ MODKEY,                       XK_plus,                     setgaps,              {.i = +5 } },
+	{ MODKEY|ShiftMask,             XK_plus,                     setgaps,              {.i = 0  } },
 	{ MODKEY,                       XK_space,                    setlayout,            {0} },
 	{ MODKEY|ShiftMask,             XK_space,                    togglefloating,       {0} },
 	{ MODKEY,                       XK_0,                        view,                 {.ui = ~0 } },
