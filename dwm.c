@@ -857,6 +857,11 @@ drawbar(Monitor *m)
 	drw_setscheme(drw, scheme[SchemeNorm]);
 	x = drw_text(drw, x, 0, w, bh, lrpad / 2, m->ltsymbol, 0);
 
+	char buffer[4];
+	snprintf(buffer, sizeof(buffer), "%i", m->nmaster);
+	w = TEXTW(buffer);
+	x = drw_text(drw, x, 0, w, bh, lrpad / 2, buffer, 0); /* Display nmaster */
+
 	if ((w = m->ww - tw - x) > bh) {
 		if (m->sel) {
 			int mid = (m->ww - TEXTW(m->sel->name)) / 2 - x;
