@@ -264,6 +264,7 @@ static int xerrordummy(Display *dpy, XErrorEvent *ee);
 static int xerrorstart(Display *dpy, XErrorEvent *ee);
 static void xrdb(const Arg *arg);
 static void zoom(const Arg *arg);
+static int counttiled(Monitor *m);
 static void centeredmaster(Monitor *m);
 static void toggleFakeFullscreen(void);
 static void load_xresources(void);
@@ -1407,8 +1408,18 @@ recttomon(int x, int y, int w, int h)
 void
 resize(Client *c, int x, int y, int w, int h, int interact)
 {
+	int n;
+	Atom onlywindowatom = XInternAtom(dpy, "_ONLY_WINDOW", False);
+
 	if (applysizehints(c, &x, &y, &w, &h, interact))
 		resizeclient(c, x, y, w, h);
+
+	n = counttiled(c->mon);
+	if (n == 1) {
+		XChangeProperty(dpy, c->win, onlywindowatom, XA_STRING, 8, PropModeReplace, "1", 1);
+	} else {
+		XChangeProperty(dpy, c->win, onlywindowatom, XA_STRING, 8, PropModeReplace, "0", 1);
+	}
 }
 
 void
@@ -2585,6 +2596,16 @@ load_xresources(void)
 	XCloseDisplay(display);
 }
 
+int
+counttiled(Monitor *m)
+{
+	int n;
+	Client *c;
+
+	for (n = 0, c = nexttiled(m->clients); c; c = nexttiled(c->next), n++);
+	return n;
+}
+
 void
 centeredmaster(Monitor *m)
 {
@@ -2592,7 +2613,7 @@ centeredmaster(Monitor *m)
 	Client *c;
 
 	/* count number of clients in the selected monitor */
-	for (n = 0, c = nexttiled(m->clients); c; c = nexttiled(c->next), n++);
+	n = counttiled(m);
 
 	if (n == 0)
 		return;
